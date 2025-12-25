@@ -1,103 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Frontex boat-migration deck generator</title>
-
-  <!-- PPTXGenJS bundle (compatible con Edge y GitHub Pages) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pptxgenjs/3.12.0/pptxgen.bundle.min.js"></script>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 40px;
-    }
-    button {
-      padding: 10px 16px;
-      font-size: 14px;
-      cursor: pointer;
-    }
-  </style>
+  <meta charset="utf-8"/>
+  <title>Instant PowerPoint – Libya/Tunisia arrivals 2025</title>
+  <script src="https://unpkg.com/pptxgenjs@3.12.0/dist/pptxgen.min.js"></script>
 </head>
 
-<body>
-
+<body style="font-family:Arial; padding:40px">
   <h2>Frontex boat-migration deck generator</h2>
   <button onclick="makePptx()">Download PowerPoint</button>
 
   <script>
     function makePptx() {
-
-      var pptx = new PptxGenJS();
+      let pptx = new PptxGenJS();
       pptx.layout = "LAYOUT_16x9";
 
-      var titleOpts = {
-        x: 0.5,
-        y: 0.5,
-        w: 12,
-        h: 1,
-        fontSize: 28,
-        bold: true,
-        color: "003366"
+      // ---- master styles ----
+      const titleOpts = {
+        x: 0.5, y: 0.5, w: 12, h: 1,
+        fontSize: 32, bold: true, color: "003366"
       };
 
-      var textOpts = {
-        x: 0.5,
-        y: 1.7,
-        w: 12,
-        h: 5,
-        fontSize: 18,
-        color: "000000"
+      const textOpts = {
+        x: 0.5, y: 1.8, w: 12, h: 5,
+        fontSize: 20, color: "000000"
       };
 
-      /* ---------- Slide 1 ---------- */
-      var s1 = pptx.addSlide();
-      s1.addText(
+      // Slide 1
+      let slide1 = pptx.addSlide();
+      slide1.addText(
         "Irregular boat arrivals from Libya & Tunisia to Italy",
         titleOpts
       );
-      s1.addText(
-        "Official Frontex / UNHCR data – Jan–Sep 2025\n" +
-        "Central Mediterranean route",
+      slide1.addText(
+        "Official Frontex / UNHCR data – Jan–Sep 2025\n(Central Mediterranean route)",
         textOpts
       );
 
-      /* ---------- Slide 2 ---------- */
-      var s2 = pptx.addSlide();
-      s2.addText("Overall trend Jan–Sep 2025", titleOpts);
-      s2.addText(
-        "≈ 50,900 arrivals detected (−1% vs 2024)\n" +
-        "Libya departures: +50% vs 2024\n" +
-        "Tunisia departures: −90% vs 2024\n" +
-        "Deaths on route: 1,299 (IOM)",
+      // Slide 2
+      let slide2 = pptx.addSlide();
+      slide2.addText("Overall trend Jan–Sep 2025", titleOpts);
+      slide2.addText(
+        "≈ 50 900 arrivals detected (-1 % vs 2024)\n" +
+        "Libya departures: +50 % vs 2024\n" +
+        "Tunisia departures: -90 % vs 2024\n" +
+        "Deaths on route: 1 299 (IOM)",
         textOpts
       );
 
-      /* ---------- Slide 3 (Table) ---------- */
-      var s3 = pptx.addSlide();
-      s3.addText("Arrivals by country of departure", titleOpts);
+      // Slide 3 – table
+      let slide3 = pptx.addSlide();
+      slide3.addText("Arrivals by country of departure", titleOpts);
 
-      s3.addTable(
-        [
-          ["Departure country", "Persons", "% of total"],
-          ["Libya", "46,300", "91%"],
-          ["Tunisia", "3,000", "6%"],
-          ["Algeria", "700", "1%"],
-          ["Other / unknown", "~900", "2%"]
-        ],
-        {
-          x: 0.5,
-          y: 1.8,
-          w: 11,
-          rowH: 0.6,
-          fontSize: 16
-        }
-      );
+      let rows = [
+        ["Departure country", "Persons", "% of total"],
+        ["Libya", "46 300", "91 %"],
+        ["Tunisia", "3 000", "6 %"],
+        ["Algeria", "700", "1 %"],
+        ["Other / unknown", "~900", "2 %"]
+      ];
 
-      /* ---------- Slide 4 ---------- */
-      var s4 = pptx.addSlide();
-      s4.addText("Top 10 nationalities (Jan–Sep 2025)", titleOpts);
-      s4.addText(
+      slide3.addTable(rows, {
+        x: 0.5,
+        y: 1.8,
+        w: 11,
+        rowH: 0.6,
+        fontSize: 18
+      });
+
+      // Slide 4
+      let slide4 = pptx.addSlide();
+      slide4.addText("Top 10 nationalities (Jan–Sep 2025)", titleOpts);
+      slide4.addText(
         "1. Bangladeshi\n" +
         "2. Egyptian\n" +
         "3. Afghan\n" +
@@ -111,45 +85,47 @@
         textOpts
       );
 
-      /* ---------- Slide 5 ---------- */
-      var s5 = pptx.addSlide();
-      s5.addText("Interdictions & pull-backs (Libya)", titleOpts);
-      s5.addText(
-        "14,600 migrants intercepted Jan–Aug 2025\n" +
+      // Slide 5
+      let slide5 = pptx.addSlide();
+      slide5.addText("Interdictions & pull-backs (Libya)", titleOpts);
+      slide5.addText(
+        "14 600 migrants intercepted Jan–Aug 2025\n" +
         "≈ 500 women; ≈ 500 children\n" +
-        "EU-supported Libyan Coast Guard as main actor",
+        "EU-supported Libyan Coast Guard main actor",
         textOpts
       );
 
-      /* ---------- Slide 6 ---------- */
-      var s6 = pptx.addSlide();
-      s6.addText("Key take-aways", titleOpts);
-      s6.addText(
-        "Still the busiest migration route into the EU\n" +
-        "Clear shift towards Libyan shore departures\n" +
-        "Increased use of high-speed boats by smugglers\n" +
-        "More than 1,300 deaths recorded in nine months\n" +
-        "Cooperation with North African agencies remains key EU tool",
+      // Slide 6
+      let slide6 = pptx.addSlide();
+      slide6.addText("Key take-aways", titleOpts);
+      slide6.addText(
+        "Still busiest route into EU\n" +
+        "Shift toward Libyan shore departures\n" +
+        "High-speed boats used by smugglers\n" +
+        "1 300+ deaths in nine months\n" +
+        "Cooperation with NA agencies main EU tool",
         textOpts
       );
 
-      /* ---------- Slide 7 ---------- */
-      var s7 = pptx.addSlide();
-      s7.addText("Data sources & disclaimer", titleOpts);
-      s7.addText(
-        "Frontex – EU External Borders releases (2025)\n" +
-        "UNHCR Italy landing dashboard (September 2025)\n" +
-        "IOM Missing Migrants Project & Libya reports\n" +
-        "Figures represent detections / arrivals, not unique individuals\n" +
-        "Numbers rounded for presentation purposes",
+      // Slide 7
+      let slide7 = pptx.addSlide();
+      slide7.addText("Data sources & disclaimer", titleOpts);
+      slide7.addText(
+        "Frontex EU External Borders releases (2025)\n" +
+        "UNHCR Italy landing dashboard (Sep 2025)\n" +
+        "IOM Missing Migrants & Libya reports\n" +
+        "Figures = detections/arrivals, not unique individuals\n" +
+        "Numbers rounded for presentation",
         textOpts
       );
 
-      pptx.writeFile("Frontex_Boat_Migration_2025.pptx");
+      pptx.writeFile({ fileName: "Frontex_Boat_Migration_2025.pptx" });
     }
   </script>
-
 </body>
 </html>
+
+
+
 
 
