@@ -1,37 +1,30 @@
-​<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
   <title>Instant PowerPoint – Libya/Tunisia arrivals 2025</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pptxgenjs/3.12.0/pptxgen.bundle.min.js"></script>
 </head>
 
 <body style="font-family:Arial; padding:40px">
   <h2>Frontex boat-migration deck generator</h2>
-  <button onclick="makePptx()">Download PowerPoint</button>
+  <button id="btn">Download PowerPoint</button>
 
-  <script>
+  <script type="module">
+    import PptxGenJS from "https://cdn.skypack.dev/pptxgenjs@3.12.0";
+
+    document.getElementById("btn").addEventListener("click", makePptx);
+
     function makePptx() {
-      let pptx = new PptxGenJS();
+      const pptx = new PptxGenJS();
       pptx.layout = "LAYOUT_16x9";
 
-      const titleOpts = {
-        x: 0.5, y: 0.5, w: 12, h: 1,
-        fontSize: 32, bold: true, color: "003366"
-      };
-
-      const textOpts = {
-        x: 0.5, y: 1.8, w: 12, h: 5,
-        fontSize: 20, color: "000000"
-      };
+      const titleOpts = { x:0.5, y:0.5, w:12, h:1, fontSize:32, bold:true, color:"003366" };
+      const textOpts  = { x:0.5, y:1.8, w:12, h:5, fontSize:20, color:"000000" };
 
       // Slide 1
       let s1 = pptx.addSlide();
       s1.addText("Irregular boat arrivals from Libya & Tunisia to Italy", titleOpts);
-      s1.addText(
-        "Official Frontex / UNHCR data – Jan–Sep 2025\n(Central Mediterranean route)",
-        textOpts
-      );
+      s1.addText("Official Frontex / UNHCR data – Jan–Sep 2025\n(Central Mediterranean route)", textOpts);
 
       // Slide 2
       let s2 = pptx.addSlide();
@@ -103,6 +96,7 @@
   </script>
 </body>
 </html>
+
 
 
 
