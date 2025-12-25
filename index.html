@@ -1,21 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8"/>
-<title>Instant PowerPoint – Libya/Tunisia arrivals 2025</title>
-<script src="https://unpkg.com/pptxgenjs@3.12.0/dist/pptxgen.min.js"></script>
-</head>
-<body style="font-family:Arial;padding:40px">
-<h2>Frontex boat-migration deck generator</h2>
-<button onclick="makePptx()">Download PowerPoint</button>
-<script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
-<script>
-function makePptx(){
-  let pptx = new PptxGenJS();
-  pptx.layout = "LAYOUT_16x9";
+  <meta charset="UTF-8">
+  <title>Frontex boat-migration deck generator</title>
 
-  const titleOpts = { x:0.5, y:0.5, w:12, h:1, fontSize:32, bold:true, color:"003366" };
-  const textOpts  = { x:0.5, y:1.8, w:12, h:5, fontSize:20, color:"000000" };
+  <!-- PPTXGENJS bundle completo (incluye JSZip) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pptxgenjs/3.12.0/pptxgen.bundle.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      padding: 60px;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Frontex boat-migration deck generator</h1>
+
+  <button onclick="makePptx()">Download PowerPoint</button>
+
+  <script>
+    function makePptx() {
+      // Crear presentación
+      let pptx = new PptxGenJS();
 
   // Slide 1
   let slide1 = pptx.addSlide();
@@ -78,9 +97,19 @@ function makePptx(){
     "Figures = detections/arrivals, not unique individuals\n" +
     "Numbers rounded for presentation", textOpts);
 
-  pptx.writeFile("Frontex_Boat_Migration_2025.pptx");
-}
-</script>
+    {
+          x: 0.5,
+          y: 1.5,
+          fontSize: 16,
+          lineSpacing: 28
+        }
+      );
+
+      // Guardar archivo
+      pptx.writeFile("frontex_migration_report.pptx");
+    }
+  </script>
+
 </body>
 </html>
 
